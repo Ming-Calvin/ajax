@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.3/jquery.js"></script>
+  <style>
+    #result {
+      width: 300px;
+      height: 100px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+<button> 点击 </button>
+<div id="result"></div>
+
+<script>
+  // 按钮点击事件
+  $('button').eq(0).click(function () {
+    // 一定要带callback
+    $.getJSON('http://127.0.0.1:8000/ajax-jsonp?callback=?', function (res) {
+  
+      console.log(res)
+      
+      $('#result').html(`
+      名称：${res.name}
+      年龄：${res.age}
+      `)
+    })
+  })
+</script>
+
+</body>
+</html>

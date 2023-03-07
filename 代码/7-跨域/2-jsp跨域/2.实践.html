@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <input type="text">
+  <p></p>
+
+  <script>
+    // 获取p标签
+    const p = document.querySelector('p')
+    // 获取input 设置离开聚焦函数
+    const input = document.querySelector('input')
+    
+    // 声明handle函数
+    function handle(data) {
+      // 设置input框样式
+      input.style.border = '1px solid red'
+      // 设置p标签替换
+      p.innerHTML = data.msg
+    }
+    
+    input.onblur = function () {
+      // 创建script标签
+      const script = document.createElement('script')
+      // 设置script的地址
+      script.src = "http://127.0.0.1:8000/check-name"
+      // 将script标签插入文档种
+      document.body.appendChild(script)
+    }
+  
+  
+  
+  
+  
+  
+    
+  </script>
+
+</body>
+</html>

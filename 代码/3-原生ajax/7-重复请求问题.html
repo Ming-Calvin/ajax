@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <button> 点击发送 </button>
+
+  <script type="text/javascript">
+    const btns = document.querySelectorAll('button')
+    let xhr = null
+    // 是否已经发送ajax标识
+    let isSending = false
+    
+    btns[0].onclick = function () {
+      // 判断是否发送
+      if(isSending) xhr.abort() // 如果在发送则终端ajax，发送新的ajax
+      
+      xhr = new XMLHttpRequest()
+  
+      // 正在发送ajax
+      isSending = true
+      
+      xhr.open('get', 'http://127.0.0.1:8000/delay')
+      
+      xhr.send()
+  
+      xhr.onreadystatechange = function () {
+        if(xhr.readyState === 4) {
+          isSending = true
+        }
+      }
+      
+      
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #result {
+      width: 200px;
+      height: 100px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <button> 发送请求 </button>
+  <div id="result"></div>
+
+  <script>
+    const btn = document.getElementsByTagName('button')[0]
+    const result = document.getElementById("result")
+    btn.onclick = function () {
+      // 1. 创建对象
+      const xhr = new XMLHttpRequest();
+
+      // 2. 初始化 设置请求方法和url 可填参数：sysnc -- 是否异步 、user、password验证的账号密码
+      xhr.open('GET', 'http://127.0.0.1:8000/server?a=1000')
+
+      // 3. 发送请求
+      xhr.send()
+
+      // 4. 事件绑定 处理服务端返回的对象
+      // on when 当...时候
+      // readystate 是xhr对象中的是属性，表示状态
+      // 0 -- UNSENT 初始状态
+      // 1 -- OPENED open被调用
+      // 2 -- HEADERS_RECEIVED 接受到 response header
+      // 3 -- LOADING // 响应正在被加载
+      // 4 -- DONE // 请求完成
+      xhr.onreadystatechange = function () {
+        // xhr 会返回3个对象，分别是readyState属性为 2 , 3 , 4时
+        if(xhr.readyState === 4) {
+          // 判断状态吧 2XX的都为成功
+          if(xhr.status >= 200 && xhr.status < 300) {
+            // 处理结果 行 头 空行 体
+            // 响应
+            console.log(xhr.status) // 状态码
+            console.log(xhr.statusText) // 状态字符串
+            console.log(xhr.getAllResponseHeaders())  //所有响应头
+            console.log(xhr.response) // 响应体
+
+            result.innerHTML = xhr.response
+          } else {
+
+          }
+        }
+
+      }
+    }
+    
+    
+  </script>
+</body>
+</html>

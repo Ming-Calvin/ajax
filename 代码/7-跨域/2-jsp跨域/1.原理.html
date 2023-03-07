@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #result {
+      width: 300px;
+      height: 100px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <div id="result"></div>
+  <script>
+    function handle(data) {
+      const result = document.getElementById('result')
+      result.innerHTML = data.name
+    }
+  </script>
+  
+  <!--<script src="http://localhost:5000/ajax/%E4%BB%A3%E7%A0%81/7-%E8%B7%A8%E5%9F%9F/2-jsp%E8%B7%A8%E5%9F%9F/js/app.js"></script>-->
+  <script src="http://127.0.0.1:8000/jsonp"></script>
+</body>
+</html>

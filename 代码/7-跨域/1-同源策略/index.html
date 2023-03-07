@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <!--协议、域名、端口完全相同-->
+  <!--违背同源策略的是跨域-->
+
+  <h1> 123 </h1>
+
+  <button>
+    点击
+  </button>
+
+  <script>
+    const btn = document.querySelector('button')
+    
+    btn.onclick = function () {
+      const xhr = new XMLHttpRequest();
+      
+      // 因为是同源，所以不用写完整的地址
+      xhr.open('get', '/data')
+      
+      xhr.send()
+      
+      xhr.onreadystatechange = function () {
+        if(xhr.readyState === 4) {
+          if(xhr.status >= 200 && xhr.status < 300) {
+            console.log(xhr.response, 'res')
+          }
+        }
+      }
+    }
+  </script>
+  
+</body>
+</html>

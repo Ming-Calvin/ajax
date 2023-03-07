@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #result {
+      width: 200px;
+      height: 100px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+<button> 发送请求 </button>
+<div id="result"></div>
+
+<script>
+  const btn = document.getElementsByTagName('button')[0]
+  const result = document.getElementById("result")
+  
+  btn.onclick = function () {
+    const xhr = new XMLHttpRequest()
+    
+    // 解决ajax的ie缓存 -- 带不同的参数
+    xhr.open('get', "http://127.0.0.1:8000/server?t=" + Date.now())
+    
+    xhr.send()
+    
+    xhr.onreadystatechange = function () {
+      console.log(xhr.response)
+      
+      result.innerHTML = xhr.response
+    }
+  }
+
+
+</script>
+</body>
+</html>
